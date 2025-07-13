@@ -2,210 +2,293 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clawlectible Bot - Legal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clawlectible Bot · Legal</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --primary-color: #2e7d32;
-      --background-color: #121212;
-      --card-bg: #1e1e1e;
-      --text-color: #e0e0e0;
-      --accent-color: #4caf50;
-      --tab-active-bg: #272727;
-      --tab-hover-bg: #2a2a2a;
+      --bg: #121212;
+      --surface: #1e1e1e;
+      --primary: #2b2f3a;
+      --accent: #4fc3f7;
+      --text: #e0e0e0;
+      --transition: 0.3s ease;
+      --radius: 8px;
     }
-    * {
+
+    *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--background-color);
-      color: var(--text-color);
-      line-height: 1.6;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
+
     header {
-      background-color: var(--card-bg);
-      padding: 1.5rem;
-      text-align: center;
-      border-bottom: 1px solid #333;
-    }
-    header h1 {
-      color: var(--accent-color);
-      font-size: 1.75rem;
-    }
-    nav {
+      background: var(--surface);
+      padding: 1rem 2rem;
       display: flex;
       justify-content: center;
-      background-color: var(--card-bg);
-      border-bottom: 1px solid #333;
-      flex-wrap: wrap;
+      border-bottom: 1px solid #2a2a2a;
     }
-    nav button {
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav button {
       background: none;
       border: none;
-      padding: 1rem 2rem;
-      cursor: pointer;
-      color: var(--text-color);
+      color: var(--text);
       font-size: 1rem;
-      transition: background-color 0.2s, color 0.2s;
-      flex: 1 1 auto;
+      font-weight: 600;
+      padding: 0.5rem;
+      cursor: pointer;
+      position: relative;
+      transition: color var(--transition);
     }
-    nav button:hover {
-      background-color: var(--tab-hover-bg);
+
+    .nav button::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width var(--transition), left var(--transition);
     }
-    nav button.active {
-      background-color: var(--tab-active-bg);
-      border-bottom: 3px solid var(--accent-color);
-      color: var(--accent-color);
+
+    .nav button:hover,
+    .nav button.active {
+      color: var(--accent);
     }
+
+    .nav button:hover::after,
+    .nav button.active::after {
+      width: 60%;
+      left: 20%;
+    }
+
     main {
       flex: 1;
       padding: 2rem;
-      max-width: 900px;
+      max-width: 800px;
+      margin: auto;
       width: 100%;
-      margin: 0 auto;
     }
+
     section {
-      opacity: 0;
-      max-height: 0;
+      background: var(--surface);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       overflow: hidden;
-      background-color: var(--card-bg);
-      padding: 0 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      transition: opacity 0.3s ease, max-height 0.3s ease;
+
+      /* start hidden */
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition:
+        max-height var(--transition),
+        opacity var(--transition),
+        transform var(--transition);
     }
+
     section.active {
+      max-height: 2000px; /* large enough */
       opacity: 1;
-      max-height: 2000px; /* enough to show content */
-      padding: 1.5rem;
+      transform: translateY(0);
     }
+
+    h1 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.8rem;
+    }
+
     h2 {
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-    h3 {
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary-color);
+      color: var(--accent);
+      margin-top: 1.5rem;
       font-size: 1.2rem;
     }
+
+    p, ul {
+      margin: 1rem 0;
+      line-height: 1.6;
+    }
+
     ul li {
       margin-bottom: 0.5rem;
       padding-left: 1rem;
-      list-style-type: disc;
     }
-    p {
-      margin-bottom: 1rem;
+
+    ul li::marker {
+      content: "• ";
+      color: var(--accent);
     }
+
     footer {
+      background: var(--surface);
       text-align: center;
       padding: 1rem;
-      background-color: #1a1a1a;
-      font-size: 0.9rem;
-      color: #aaa;
-      border-top: 1px solid #333;
+      font-size: 0.85rem;
+      color: #888;
+      border-top: 1px solid #2a2a2a;
     }
+
     a {
-      color: var(--accent-color);
+      color: var(--accent);
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     @media (max-width: 600px) {
-      nav button {
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-      }
-      main {
-        padding: 1rem;
-      }
-      header h1 {
-        font-size: 1.5rem;
+      header { padding: 1rem; }
+      .nav { flex-direction: column; gap: 1rem; }
+      .nav button::after,
+      .nav button:hover::after,
+      .nav button.active::after {
+        width: 40%;
+        left: 30%;
       }
     }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>Clawlectible Bot</h1>
+    <nav class="nav">
+      <button data-hash="terms-of-service">Terms of Service</button>
+      <button data-hash="privacy-policy">Privacy Policy</button>
+    </nav>
   </header>
-  <nav>
-    <button id="tab-terms" class="active">Terms of Service</button>
-    <button id="tab-privacy">Privacy Policy</button>
-  </nav>
+
   <main>
-    <section id="terms-section" class="active">
-      <h2>Terms of Service</h2>
-      <h3>1. Acceptance of Terms</h3>
-      <p>By inviting and using the Clawlectible Bot on your Discord server, you agree to be bound by these Terms of Service. If you do not agree, please do not use the bot.</p>
-      <h3>2. Description of Service</h3>
-      <p>Clawlectible Bot provides users with random cat images, collectible cat cards, and the ability to trade them with other users on Discord. Additional features may be introduced at any time.</p>
-      <h3>3. User Conduct</h3>
+    <!-- TERMS -->
+    <section id="terms-of-service">
+      <h1>Terms of Service</h1>
+
+      <h2>1. Acceptance of Terms</h2>
+      <p>By inviting and using Clawlectible Bot on your Discord server, you agree to be bound by these Terms of Service. If you do not agree, please do not use the Bot.</p>
+
+      <h2>2. Service Description</h2>
+      <p>Clawlectible Bot provides collectible cat cards, trading functionality, random cat images, and community features. We may introduce new features or retire existing ones at our sole discretion.</p>
+
+      <h2>3. User Eligibility</h2>
+      <p>You must be at least 13 years old and comply with Discord’s Terms of Service. By using Clawlectible Bot, you represent that you meet these requirements.</p>
+
+      <h2>4. User Conduct</h2>
       <ul>
-        <li>No abuse of bot commands or spam.</li>
-        <li>No use of Clawlectible Bot for unlawful or harmful purposes.</li>
-        <li>Respect fellow users and use trading features fairly.</li>
+        <li>No harassment, hate speech, or unlawful content.</li>
+        <li>No spamming of commands or exploitation of trading mechanics.</li>
+        <li>Respect the privacy and property of other users.</li>
       </ul>
-      <h3>4. Data Collection</h3>
-      <p>Clawlectible Bot may collect limited data (such as user ID and trading logs) for operational purposes only. No personal information is stored or shared.</p>
-      <h3>5. Modifications to Terms</h3>
-      <p>These terms may be updated at any time. We will notify users via the official Discord server or bot announcements channel.</p>
-      <h3>6. Contact</h3>
-      <p>For questions or concerns, please contact the developer at <a href="mailto:@jihadhsein@icloud.com">@jihadhsein@icloud.com</a>.</p>
-      <p>&copy; 2025 Clawlectible Bot. All rights reserved.</p>
+
+      <h2>5. Intellectual Property</h2>
+      <p>All bot code, graphics, and content are the property of Clawlectible Bot’s development team. You may not reproduce, modify, or distribute without express permission.</p>
+
+      <h2>6. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, Clawlectible Bot is provided “as is” and “as available.” We disclaim all warranties and will not be liable for any indirect, incidental, or consequential damages.</p>
+
+      <h2>7. Termination</h2>
+      <p>We reserve the right to suspend or terminate your access at any time, with or without cause, including for violation of these terms.</p>
+
+      <h2>8. Governing Law</h2>
+      <p>These Terms are governed by the laws of the developer’s jurisdiction, without regard to conflict-of-law principles.</p>
+
+      <h2>9. Changes to Terms</h2>
+      <p>We may update these Terms from time to time. Continued use after changes implies acceptance. Major updates will be announced via Discord.</p>
     </section>
-    <section id="privacy-section">
-      <h2>Privacy Policy</h2>
-      <h3>1. Introduction</h3>
-      <p>Clawlectible Bot respects your privacy and is committed to protecting any personal information collected through its service.</p>
-      <h3>2. Information We Collect</h3>
+
+    <!-- PRIVACY -->
+    <section id="privacy-policy">
+      <h1>Privacy Policy</h1>
+
+      <h2>1. Information We Collect</h2>
       <ul>
-        <li><strong>User ID</strong>: Stored to track ownership and trading of cat cards.</li>
-        <li><strong>Message Logs</strong>: Temporary logs for moderation and feature usage.</li>
+        <li><strong>Usage Data:</strong> Discord user IDs, command usage, trading logs.</li>
+        <li><strong>Content Data:</strong> Images and metadata associated with trades.</li>
       </ul>
-      <h3>3. How We Use Information</h3>
-      <p>Data is used solely for operational purposes, feature functionality, and ensuring fair use. We do not sell or share personal data with third parties.</p>
-      <h3>4. Data Retention</h3>
-      <p>Information is retained for the minimum period necessary to provide functionality or comply with legal obligations.</p>
-      <h3>5. Security</h3>
-      <p>We implement reasonable security measures to protect data. However, no method is 100% secure.</p>
-      <h3>6. Children's Privacy</h3>
-      <p>Clawlectible Bot is not intended for children under 13. We do not knowingly collect data from individuals under 13.</p>
-      <h3>7. Changes to This Policy</h3>
-      <p>We may update this Privacy Policy from time to time. Changes will be announced on our official Discord server.</p>
-      <h3>8. Contact Us</h3>
-      <p>If you have questions about this policy, contact us at <a href="mailto:jihadhsein@icloud.com">jihadhsein@icloud.com</a>.</p>
-      <p>&copy; 2025 Clawlectible Bot. All rights reserved.</p>
+
+      <h2>2. Use of Information</h2>
+      <p>We use collected data to:</p>
+      <ul>
+        <li>Provide and improve Bot features.</li>
+        <li>Monitor and prevent abuse.</li>
+        <li>Communicate updates and announcements.</li>
+      </ul>
+
+      <h2>3. Data Retention & Security</h2>
+      <p>Logs are retained for a rolling 30-day period. All data in transit is encrypted via HTTPS. We implement industry-standard safeguards against unauthorized access.</p>
+
+      <h2>4. Cookies & Similar Technologies</h2>
+      <p>We do not use browser cookies. Any third-party integrations (e.g., analytics dashboards) manage their own cookies, subject to their policies.</p>
+
+      <h2>5. Third-Party Services</h2>
+      <p>We may employ trusted services (e.g., hosting, analytics). Those providers have access only to data necessary to perform their function, under strict confidentiality.</p>
+
+      <h2>6. Your Rights</h2>
+      <ul>
+        <li><strong>Access:</strong> You may request a copy of your data.</li>
+        <li><strong>Deletion:</strong> You may request permanent deletion of your personal data.</li>
+        <li><strong>Corrections:</strong> You may ask to rectify any inaccuracies.</li>
+      </ul>
+      <p>To exercise these rights, contact us at <a href="mailto:support@clawlectiblebot.com">support@clawlectiblebot.com</a>.</p>
+
+      <h2>7. Children’s Privacy</h2>
+      <p>Clawlectible Bot is not intended for children under 13. We do not knowingly collect data from minors.</p>
+
+      <h2>8. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy periodically. We’ll notify you of significant changes via Discord or email.</p>
+
+      <h2>9. Contact Us</h2>
+      <p>If you have any questions or concerns, please reach out: <br>
+         <a href="mailto:support@clawlectiblebot.com">support@clawlectiblebot.com</a>
+      </p>
     </section>
   </main>
+
   <footer>
-    &copy; 2025 Clawlectible Bot.
+    &copy; 2025 Clawlectible Bot. All rights reserved.
   </footer>
+
   <script>
-    const termsBtn = document.getElementById('tab-terms');
-    const privacyBtn = document.getElementById('tab-privacy');
-    const termsSec = document.getElementById('terms-section');
-    const privacySec = document.getElementById('privacy-section');
-    function activate(tab) {
-      if (tab === 'terms') {
-        termsBtn.classList.add('active'); privacyBtn.classList.remove('active');
-        termsSec.classList.add('active'); privacySec.classList.remove('active');
-      } else {
-        privacyBtn.classList.add('active'); termsBtn.classList.remove('active');
-        privacySec.classList.add('active'); termsSec.classList.remove('active');
-      }
+    // Activate based on URL hash
+    function activate(hash) {
+      const target = (hash.replace('#', '') || 'terms-of-service');
+      document.querySelectorAll('.nav button')
+        .forEach(btn => btn.classList.toggle('active', btn.dataset.hash === target));
+      document.querySelectorAll('main section')
+        .forEach(sec => sec.classList.toggle('active', sec.id === target));
     }
-    termsBtn.addEventListener('click', () => activate('terms'));
-    privacyBtn.addEventListener('click', () => activate('privacy'));
+
+    // Handle nav clicks
+    document.querySelector('.nav').addEventListener('click', e => {
+      if (e.target.matches('button')) {
+        location.hash = e.target.dataset.hash;
+      }
+    });
+
+    // On hash change / load
+    window.addEventListener('hashchange', () => activate(location.hash));
+    window.addEventListener('DOMContentLoaded', () => activate(location.hash));
   </script>
 </body>
 </html>
