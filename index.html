@@ -13,19 +13,23 @@
     :root {
       --bg: #121212;
       --surface: #1e1e1e;
-      --primary: #2b2f3a;
       --accent: #4fc3f7;
       --text: #e0e0e0;
       --transition: 0.3s ease;
       --radius: 8px;
+      --header-height: 64px;
     }
 
+    /* Remove all default gaps */
     *, *::before, *::after {
       box-sizing: border-box;
     }
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      margin: 0;
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -34,19 +38,24 @@
       min-height: 100vh;
     }
 
+    /* FIXED HEADER */
     header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
       background: var(--surface);
-      padding: 1rem 2rem;
       display: flex;
+      align-items: center;
       justify-content: center;
       border-bottom: 1px solid #2a2a2a;
+      z-index: 10;
+      padding: 0 2rem;
     }
 
     .nav {
       display: flex;
       gap: 2rem;
     }
-
     .nav button {
       background: none;
       border: none;
@@ -58,7 +67,6 @@
       position: relative;
       transition: color var(--transition);
     }
-
     .nav button::after {
       content: '';
       position: absolute;
@@ -70,24 +78,23 @@
       border-radius: 2px;
       transition: width var(--transition), left var(--transition);
     }
-
     .nav button:hover,
     .nav button.active {
       color: var(--accent);
     }
-
     .nav button:hover::after,
     .nav button.active::after {
       width: 60%;
       left: 20%;
     }
 
+    /* MAIN OFFSET TO BOTTOM OF HEADER */
     main {
       flex: 1;
-      padding: 2rem;
+      padding: calc(var(--header-height) + 2rem) 2rem 2rem;
       max-width: 800px;
-      margin: auto;
       width: 100%;
+      margin: 0 auto;
     }
 
     section {
@@ -98,7 +105,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       overflow: hidden;
 
-      /* start hidden */
+      /* collapsed by default */
       max-height: 0;
       opacity: 0;
       transform: translateY(10px);
@@ -107,9 +114,9 @@
         opacity var(--transition),
         transform var(--transition);
     }
-
     section.active {
-      max-height: 2000px; /* large enough */
+      /* large max-height to reveal all content */
+      max-height: 2000px;
       opacity: 1;
       transform: translateY(0);
     }
@@ -119,23 +126,19 @@
       color: var(--accent);
       font-size: 1.8rem;
     }
-
     h2 {
       color: var(--accent);
       margin-top: 1.5rem;
       font-size: 1.2rem;
     }
-
     p, ul {
       margin: 1rem 0;
       line-height: 1.6;
     }
-
     ul li {
       margin-bottom: 0.5rem;
       padding-left: 1rem;
     }
-
     ul li::marker {
       content: "• ";
       color: var(--accent);
@@ -149,18 +152,14 @@
       color: #888;
       border-top: 1px solid #2a2a2a;
     }
-
     a {
       color: var(--accent);
       text-decoration: none;
     }
+    a:hover { text-decoration: underline; }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
+    /* Mobile tweak */
     @media (max-width: 600px) {
-      header { padding: 1rem; }
       .nav { flex-direction: column; gap: 1rem; }
       .nav button::after,
       .nav button:hover::after,
@@ -181,52 +180,41 @@
   </header>
 
   <main>
-    <!-- TERMS -->
+    <!-- TERMS OF SERVICE -->
     <section id="terms-of-service">
       <h1>Terms of Service</h1>
-
       <h2>1. Acceptance of Terms</h2>
       <p>By inviting and using Clawlectible Bot on your Discord server, you agree to be bound by these Terms of Service. If you do not agree, please do not use the Bot.</p>
-
       <h2>2. Service Description</h2>
-      <p>Clawlectible Bot provides collectible cat cards, trading functionality, random cat images, and community features. We may introduce new features or retire existing ones at our sole discretion.</p>
-
+      <p>Clawlectible Bot provides collectible cat cards, trading functionality, random cat images, and community engagement features. We may introduce new features or retire existing ones at our sole discretion.</p>
       <h2>3. User Eligibility</h2>
       <p>You must be at least 13 years old and comply with Discord’s Terms of Service. By using Clawlectible Bot, you represent that you meet these requirements.</p>
-
       <h2>4. User Conduct</h2>
       <ul>
         <li>No harassment, hate speech, or unlawful content.</li>
         <li>No spamming of commands or exploitation of trading mechanics.</li>
         <li>Respect the privacy and property of other users.</li>
       </ul>
-
       <h2>5. Intellectual Property</h2>
-      <p>All bot code, graphics, and content are the property of Clawlectible Bot’s development team. You may not reproduce, modify, or distribute without express permission.</p>
-
+      <p>All bot code, graphics, and content are the property of the Clawlectible Bot development team. You may not reproduce, modify, or distribute without express permission.</p>
       <h2>6. Limitation of Liability</h2>
       <p>To the maximum extent permitted by law, Clawlectible Bot is provided “as is” and “as available.” We disclaim all warranties and will not be liable for any indirect, incidental, or consequential damages.</p>
-
       <h2>7. Termination</h2>
       <p>We reserve the right to suspend or terminate your access at any time, with or without cause, including for violation of these terms.</p>
-
       <h2>8. Governing Law</h2>
       <p>These Terms are governed by the laws of the developer’s jurisdiction, without regard to conflict-of-law principles.</p>
-
       <h2>9. Changes to Terms</h2>
       <p>We may update these Terms from time to time. Continued use after changes implies acceptance. Major updates will be announced via Discord.</p>
     </section>
 
-    <!-- PRIVACY -->
+    <!-- PRIVACY POLICY -->
     <section id="privacy-policy">
       <h1>Privacy Policy</h1>
-
       <h2>1. Information We Collect</h2>
       <ul>
         <li><strong>Usage Data:</strong> Discord user IDs, command usage, trading logs.</li>
         <li><strong>Content Data:</strong> Images and metadata associated with trades.</li>
       </ul>
-
       <h2>2. Use of Information</h2>
       <p>We use collected data to:</p>
       <ul>
@@ -234,16 +222,12 @@
         <li>Monitor and prevent abuse.</li>
         <li>Communicate updates and announcements.</li>
       </ul>
-
       <h2>3. Data Retention & Security</h2>
       <p>Logs are retained for a rolling 30-day period. All data in transit is encrypted via HTTPS. We implement industry-standard safeguards against unauthorized access.</p>
-
       <h2>4. Cookies & Similar Technologies</h2>
       <p>We do not use browser cookies. Any third-party integrations (e.g., analytics dashboards) manage their own cookies, subject to their policies.</p>
-
       <h2>5. Third-Party Services</h2>
       <p>We may employ trusted services (e.g., hosting, analytics). Those providers have access only to data necessary to perform their function, under strict confidentiality.</p>
-
       <h2>6. Your Rights</h2>
       <ul>
         <li><strong>Access:</strong> You may request a copy of your data.</li>
@@ -251,15 +235,12 @@
         <li><strong>Corrections:</strong> You may ask to rectify any inaccuracies.</li>
       </ul>
       <p>To exercise these rights, contact us at <a href="mailto:support@clawlectiblebot.com">support@clawlectiblebot.com</a>.</p>
-
       <h2>7. Children’s Privacy</h2>
       <p>Clawlectible Bot is not intended for children under 13. We do not knowingly collect data from minors.</p>
-
       <h2>8. Changes to This Policy</h2>
       <p>We may update this Privacy Policy periodically. We’ll notify you of significant changes via Discord or email.</p>
-
       <h2>9. Contact Us</h2>
-      <p>If you have any questions or concerns, please reach out: <br>
+      <p>If you have any questions or concerns, please reach out:<br>
          <a href="mailto:support@clawlectiblebot.com">support@clawlectiblebot.com</a>
       </p>
     </section>
@@ -270,25 +251,25 @@
   </footer>
 
   <script>
-    // Activate based on URL hash
     function activate(hash) {
       const target = (hash.replace('#', '') || 'terms-of-service');
-      document.querySelectorAll('.nav button')
-        .forEach(btn => btn.classList.toggle('active', btn.dataset.hash === target));
-      document.querySelectorAll('main section')
-        .forEach(sec => sec.classList.toggle('active', sec.id === target));
+      document.querySelectorAll('.nav button').forEach(btn =>
+        btn.classList.toggle('active', btn.dataset.hash === target)
+      );
+      document.querySelectorAll('main section').forEach(sec =>
+        sec.classList.toggle('active', sec.id === target)
+      );
+      window.scrollTo(0, 0);
     }
 
-    // Handle nav clicks
     document.querySelector('.nav').addEventListener('click', e => {
       if (e.target.matches('button')) {
         location.hash = e.target.dataset.hash;
       }
     });
 
-    // On hash change / load
-    window.addEventListener('hashchange', () => activate(location.hash));
     window.addEventListener('DOMContentLoaded', () => activate(location.hash));
+    window.addEventListener('hashchange', () => activate(location.hash));
   </script>
 </body>
 </html>
